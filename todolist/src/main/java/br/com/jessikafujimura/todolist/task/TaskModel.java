@@ -32,7 +32,16 @@ public class TaskModel {
     private LocalDateTime endAt;
     private String priority;
 
+    private UUID idUser;
+
     @CreationTimestamp
     private LocalDateTime createAt;
+
+    public void setTitle(String title) throws Exception{
+        if(title.length() > 50){
+            throw new Exception("Tamanho do título excedido");
+        }
+        this.title = title;
+    }
     
 }

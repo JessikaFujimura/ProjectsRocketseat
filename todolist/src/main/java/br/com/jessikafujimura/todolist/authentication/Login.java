@@ -37,6 +37,7 @@ public class Login extends OncePerRequestFilter {
             } else {
                 var passwordVerified = BCrypt.verifyer().verify(credentials[1].toCharArray(), user.get().getPassword());
                 if(passwordVerified.verified){
+                    request.setAttribute("idUser", user.get().getUserId() );
                     filterChain.doFilter(request, response);
                 } else {
                     response.sendError(401);
