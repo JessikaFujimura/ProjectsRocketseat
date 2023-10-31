@@ -49,7 +49,13 @@ public class Login extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getRequestURI().equals("/users/user") && request.getMethod().equals(HttpMethod.POST.name());
+        if(request.getRequestURI().equals("/users/user") && request.getMethod().equals(HttpMethod.POST.name())){
+            return Boolean.TRUE;
+        }
+        if(request.getRequestURI().startsWith("/swagger-ui")){
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 
 }

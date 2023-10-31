@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/users")
@@ -22,6 +23,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/user")
+    @ApiOperation(value = "Create User")
     public ResponseEntity<UserModel> createUser(@RequestBody UserModel userModel){
         Optional<UserModel> user = this.userRepository.findByUserName(userModel.getUserName());
         if(user.isPresent()){
